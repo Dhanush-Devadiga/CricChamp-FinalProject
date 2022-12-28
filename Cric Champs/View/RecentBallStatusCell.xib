@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="recentBallstatus" id="7O6-gt-XDD" customClass="RecentBallStatusCell" customModule="Cric_Champs" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="jeH-h4-SFb">
+                <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="characterWrap" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="0KC-ba-Vj9" customClass="CustomRunLabel" customModule="Cric_Champs" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="236-e4-Gby"/>
+                            <constraint firstAttribute="width" constant="25" id="5DW-Z2-vN4"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="0KC-ba-Vj9" firstAttribute="top" secondItem="jeH-h4-SFb" secondAttribute="top" id="CYO-UB-6Mf"/>
+                    <constraint firstAttribute="bottom" secondItem="0KC-ba-Vj9" secondAttribute="bottom" id="TLq-Bc-CeL"/>
+                    <constraint firstItem="0KC-ba-Vj9" firstAttribute="leading" secondItem="jeH-h4-SFb" secondAttribute="leading" id="dFK-Jq-YbA"/>
+                    <constraint firstAttribute="trailing" secondItem="0KC-ba-Vj9" secondAttribute="trailing" id="fB6-cZ-Spp"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <connections>
+                <outlet property="status" destination="0KC-ba-Vj9" id="WzL-ZA-4yD"/>
+            </connections>
+            <point key="canvasLocation" x="163.768115942029" y="34.821428571428569"/>
+        </collectionViewCell>
+    </objects>
+</document>

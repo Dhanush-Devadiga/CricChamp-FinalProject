@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="asG-oe-qJm" customClass="FallOfWicketTableViewCell" customModule="LiveScoreProject" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="360" height="48"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="asG-oe-qJm" id="Aq3-qr-0E8">
+                <rect key="frame" x="0.0" y="0.0" width="360" height="48"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1D-mV-qSi">
+                        <rect key="frame" x="15" y="5" width="330" height="33"/>
+                        <attributedString key="attributedText">
+                            <fragment content="2/1 (Naveen F, 0.5)">
+                                <attributes>
+                                    <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <font key="NSFont" metaFont="menu" size="14"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.5" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="c1D-mV-qSi" firstAttribute="leading" secondItem="Aq3-qr-0E8" secondAttribute="leading" constant="15" id="WSI-Jo-9Dx"/>
+                    <constraint firstAttribute="trailing" secondItem="c1D-mV-qSi" secondAttribute="trailing" constant="15" id="Y5M-Rn-Ge3"/>
+                    <constraint firstItem="c1D-mV-qSi" firstAttribute="top" secondItem="Aq3-qr-0E8" secondAttribute="top" constant="5" id="cXC-R1-pOO"/>
+                    <constraint firstAttribute="bottom" secondItem="c1D-mV-qSi" secondAttribute="bottom" constant="10" id="cyU-Sv-v3I"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="fallOfWickets" destination="c1D-mV-qSi" id="BCp-1z-268"/>
+            </connections>
+            <point key="canvasLocation" x="-486.95652173913049" y="39.84375"/>
+        </tableViewCell>
+    </objects>
+</document>

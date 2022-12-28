@@ -1,0 +1,39 @@
+
+
+{
+	"resultCode": 0,
+	"message": "Operation success",
+	"response": {
+		"list": [{
+				"id": "0",
+				"data": "MATCHES",
+				"type": "Matches"
+			},
+			{
+				"id": "1",
+				"data": "TEAMS",
+				"type": "Teams"
+			},
+			{
+				"id": "2",
+				"data": "STANDINGS",
+				"type": "Standings"
+			},
+			{
+				"id": "3",
+				"data": "STATS",
+				"type": "Stats"
+			},
+			{
+				"id": "4",
+				"data": "GROUNDS",
+				"type": "Grounds"
+			},
+			{
+				"id": "5",
+				"data": "UMPIRES",
+				"type": "Umpires"
+			}
+		]
+	}
+}

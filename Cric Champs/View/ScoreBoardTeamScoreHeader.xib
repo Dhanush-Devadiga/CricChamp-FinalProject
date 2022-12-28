@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+        <array key="Roboto-Light.ttf">
+            <string>Roboto-Light</string>
+        </array>
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ScoreBoardTeamScoreHeader" customModule="Cric_Champs" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UDL Strikers Innings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gNk-gb-zsr">
+                    <rect key="frame" x="15" y="13" width="127.5" height="16.5"/>
+                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
+                    <color key="textColor" red="0.55686274509803924" green="0.60784313725490191" blue="0.6588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999/10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B3z-ut-QrS">
+                    <rect key="frame" x="235.5" y="9" width="78" height="28.5"/>
+                    <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="24"/>
+                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IlY-iD-JlV">
+                    <rect key="frame" x="313.5" y="12" width="47.5" height="23.5"/>
+                    <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rb8-zY-SN5">
+                    <rect key="frame" x="147.5" y="9" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="WTu-d3-fV4"/>
+                        <constraint firstAttribute="width" constant="24" id="yT1-kt-HkO"/>
+                    </constraints>
+                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" image="chevron.down" catalog="system"/>
+                    <connections>
+                        <action selector="onClickDropDown:" destination="iN0-l3-epB" eventType="touchUpInside" id="cu1-8D-Jb9"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <constraints>
+                <constraint firstItem="B3z-ut-QrS" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="9" id="2ZN-RF-5vd"/>
+                <constraint firstItem="IlY-iD-JlV" firstAttribute="leading" secondItem="B3z-ut-QrS" secondAttribute="trailing" id="KlQ-Bw-Nzu"/>
+                <constraint firstItem="IlY-iD-JlV" firstAttribute="leading" secondItem="B3z-ut-QrS" secondAttribute="trailing" id="MdG-sR-Xph"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="IlY-iD-JlV" secondAttribute="trailing" constant="14" id="RFI-Ue-6ay"/>
+                <constraint firstItem="Rb8-zY-SN5" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="9" id="X5O-yW-4UA"/>
+                <constraint firstItem="IlY-iD-JlV" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="12" id="a6q-WG-QsP"/>
+                <constraint firstItem="gNk-gb-zsr" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="13" id="cLf-YE-7by"/>
+                <constraint firstItem="gNk-gb-zsr" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="f0a-BH-mJA"/>
+                <constraint firstItem="Rb8-zY-SN5" firstAttribute="leading" secondItem="gNk-gb-zsr" secondAttribute="trailing" constant="5" id="yNL-NK-AVB"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="over" destination="IlY-iD-JlV" id="oMD-TT-TkR"/>
+                <outlet property="score" destination="B3z-ut-QrS" id="vl9-LN-jsh"/>
+                <outlet property="teamName" destination="gNk-gb-zsr" id="926-XX-uoU"/>
+            </connections>
+            <point key="canvasLocation" x="141.59999999999999" y="143.02848575712144"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="chevron.down" catalog="system" width="128" height="72"/>
+    </resources>
+</document>

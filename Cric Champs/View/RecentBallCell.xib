@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="recentBallCell" id="h7b-rT-Vo1" customClass="RecentBallCell" customModule="Cric_Champs" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="57"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="h7b-rT-Vo1" id="aNL-y2-Gky">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="57"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g3x-o9-TUI" userLabel="RecentView">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="57"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recents" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sqg-On-vVJ">
+                                <rect key="frame" x="15" y="20.5" width="47" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="7qz-cI-Myc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FWi-rT-VDp">
+                                <rect key="frame" x="90" y="8" width="324" height="41"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Kta-Rv-PQ6">
+                                    <size key="itemSize" width="24" height="25"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="FWi-rT-VDp" firstAttribute="leading" secondItem="Sqg-On-vVJ" secondAttribute="trailing" constant="28" id="1XQ-hN-BjD"/>
+                            <constraint firstItem="Sqg-On-vVJ" firstAttribute="centerY" secondItem="g3x-o9-TUI" secondAttribute="centerY" id="2MO-eB-7Xq"/>
+                            <constraint firstAttribute="bottom" secondItem="FWi-rT-VDp" secondAttribute="bottom" constant="8" id="8ut-xB-9uG"/>
+                            <constraint firstItem="FWi-rT-VDp" firstAttribute="top" secondItem="g3x-o9-TUI" secondAttribute="top" constant="8" id="C9V-vy-eJS"/>
+                            <constraint firstAttribute="trailing" secondItem="FWi-rT-VDp" secondAttribute="trailing" id="ZjW-SR-qda"/>
+                            <constraint firstItem="FWi-rT-VDp" firstAttribute="centerY" secondItem="g3x-o9-TUI" secondAttribute="centerY" id="cwr-wa-seS"/>
+                            <constraint firstAttribute="height" constant="57" id="k0b-vK-AdW"/>
+                            <constraint firstItem="Sqg-On-vVJ" firstAttribute="leading" secondItem="g3x-o9-TUI" secondAttribute="leading" constant="15" id="wP4-Ys-hVY"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="g3x-o9-TUI" secondAttribute="trailing" id="J2k-Ug-ve9"/>
+                    <constraint firstItem="g3x-o9-TUI" firstAttribute="leading" secondItem="aNL-y2-Gky" secondAttribute="leading" id="NZP-yw-nxO"/>
+                    <constraint firstAttribute="bottom" secondItem="g3x-o9-TUI" secondAttribute="bottom" id="aYO-u2-xve"/>
+                    <constraint firstItem="g3x-o9-TUI" firstAttribute="top" secondItem="aNL-y2-Gky" secondAttribute="top" id="xk6-Iw-Q1t"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="recentCollectionView" destination="FWi-rT-VDp" id="KRW-VS-cEs"/>
+            </connections>
+            <point key="canvasLocation" x="298.55072463768118" y="24.776785714285712"/>
+        </tableViewCell>
+    </objects>
+</document>
