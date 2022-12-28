@@ -6551,7 +6551,6 @@ went wrong.</string>
                                                                 </state>
                                                                 <connections>
                                                                     <action selector="onWicketTapped:" destination="HKw-Mm-wQD" eventType="touchUpInside" id="4a7-pl-giA"/>
-                                                                    <action selector="wicketWithFeilder:" destination="HKw-Mm-wQD" eventType="touchUpInside" id="4FW-1u-fIO"/>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y8O-E1-nuH" customClass="CustomWicketButton" customModule="Cric_Champs" customModuleProvider="target">
@@ -6599,7 +6598,6 @@ went wrong.</string>
                                                                 </state>
                                                                 <connections>
                                                                     <action selector="onWicketTapped:" destination="HKw-Mm-wQD" eventType="touchUpInside" id="Pqr-hB-wuy"/>
-                                                                    <action selector="wicketWithFeilder:" destination="HKw-Mm-wQD" eventType="touchUpInside" id="cFG-rg-ChY"/>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="56c-eC-eKC" customClass="CustomWicketButton" customModule="Cric_Champs" customModuleProvider="target">
@@ -6614,7 +6612,6 @@ went wrong.</string>
                                                                 </state>
                                                                 <connections>
                                                                     <action selector="onWicketTapped:" destination="HKw-Mm-wQD" eventType="touchUpInside" id="3Dp-cZ-rsj"/>
-                                                                    <action selector="wicketWithFeilder:" destination="HKw-Mm-wQD" eventType="touchUpInside" id="paA-Pu-bGP"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
