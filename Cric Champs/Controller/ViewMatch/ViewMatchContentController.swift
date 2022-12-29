@@ -15,10 +15,10 @@ class ViewMatchContentController: UIPageViewController, UIPageViewControllerData
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Set the data source to itself
+
         self.dataSource = self
         
-        // Create the first walkthrough screen
+
         if let startingViewController = contentView(at: 0) {
             setViewControllers([startingViewController], direction: .forward, animated: true, completion: nil)
         }

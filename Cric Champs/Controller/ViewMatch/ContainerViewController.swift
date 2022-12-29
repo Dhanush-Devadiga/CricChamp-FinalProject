@@ -212,10 +212,7 @@ extension ContainerViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func createMatchCell(tableView: UITableView, indexPath: IndexPath) ->  MatchCardCell  {
-        //let currentMatch = vm?.segrageatedMatches[indexPath.section][indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "MatchCell") as! MatchCardCell
-//        cell.sendMatchDetails(match: (vm?.matches[indexPath.row])!)
-//        cell.sendTeamsdetails(vers: (vm?.versus)!)
         if let matchInfo = self.matchdatas{
             cell.sendVersusMatchesData(vmatch: (matchInfo[indexPath.row]))
         }
@@ -256,8 +253,6 @@ extension ContainerViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if index == 0 {
             let vc = storyboard?.instantiateViewController(withIdentifier: "LiveViewController") as? LiveViewController
-            //liveScoreViewModel.currentMatchId = vm?.matches[indexPath.row].matchId
-            //liveScoreViewModel.currentTournamentId = vm?.matches[indexPath.row].tournamentId
             liveScoreViewModel.currentMatchId = viewTournament.matches[indexPath.row].matchId
             liveScoreViewModel.currentTournamentId = viewTournament.matches[indexPath.row].tournamentId
             if viewTournament.matches[indexPath.row].matchStatus == MatchStatus.UPCOMING.rawValue {

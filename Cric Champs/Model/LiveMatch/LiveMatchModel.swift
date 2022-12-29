@@ -15,6 +15,8 @@ struct LiveScore {
     var partnership: PartnerShip?
     var fallOfWicket: FallOfWicket?
     var commentary: [Commentary]
+    //var recents: [Commentary]
+    var inningStatus = false
 }
 struct MatchScoreBoard {
     var scoreBoard: TeamScoreBoard?

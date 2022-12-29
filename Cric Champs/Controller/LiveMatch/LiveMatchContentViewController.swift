@@ -21,7 +21,7 @@ class LiveMatchContentViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         registerCell()
         registerHeader()
-        //scheduledTimerWithTimeInterval()
+        scheduledTimerWithTimeInterval()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -139,7 +139,6 @@ class LiveMatchContentViewController: UIViewController {
             guard let parameters = liveScoreViewModel.fetchRequiredIdToGetScore(index: indexPath.row) else {
                 return
             }
-            print("DIDSELECT", parameters)
             scoreBoardViewModel.makeDataRequest(parameters: parameters) { (scoreBoard, error) in
                 DispatchQueue.main.async
                 {
@@ -191,7 +190,11 @@ class LiveMatchContentViewController: UIViewController {
         } else {
             return 1
         }
-        case 1: return 2
+        case 1: if let livescore = liveScoreViewModel.liveScore {
+                        return livescore.batting.count
+                } else {
+                    return 0
+                }
         case 2: return 3
         case 3: if let livescore = liveScoreViewModel.liveScore {
                 return livescore.commentary.count

@@ -52,6 +52,7 @@ class LiveScoreViweMdoel {
         var teamLiveScore = [TeamScore]()
         var commentary = [Commentary]()
         var fallOfWicket: FallOfWicket?
+        var inningStatus = false
         
         if let score = data["lives"] as? ([Any]) {
             for index in 0..<score.count {
@@ -86,14 +87,20 @@ class LiveScoreViweMdoel {
                 if let commentaryData = commentry[index] as? [String: Any] {
                     let fetchedCommentary = fetchLiveCommentary(data: commentaryData)
                     if fetchedCommentary.overStatus {
-                        commentary.append(Commentary(ballStatus: "|", ball: 0, over: fetchedCommentary.over + 1, run: 68, overStatus: true, comment: "Dhanush"))
+                        commentary.append(Commentary(ballStatus: "|", ball: 0, over: fetchedCommentary.over + 1, run: 68, overStatus: true, comment: ""))
                     }
                     commentary.append(fetchedCommentary)
                 }
             }
         }
+        
+        if let status = data["matchStatus"] as? String {
+            if status == MatchStatus.INNINGCOMPLETED.rawValue {
+                inningStatus = true
+            }
+        }
 
-        let liveScore = LiveScore(score: teamLiveScore, batting: allBatsman, bowling: bowler, partnership: partnership, fallOfWicket: fallOfWicket, commentary: commentary)
+        let liveScore = LiveScore(score: teamLiveScore, batting: allBatsman, bowling: bowler, partnership: partnership, fallOfWicket: fallOfWicket, commentary: commentary, inningStatus: inningStatus)
         return liveScore
     }
     
