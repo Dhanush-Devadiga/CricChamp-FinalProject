@@ -89,22 +89,22 @@ class UpdateLiveScoreViewController: UIViewController {
         if viewModel.firstLoad {
             viewModel.getTeams() { statusCode in
                 if statusCode != 200 {
-                    DispatchQueue.main.async{self.activityIndicator.stopAnimating()}
-                    //               self.navigationController?.popViewController(animated: true)
+                    DispatchQueue.main.async {
+                        self.activityIndicator.stopAnimating()
+                    }
                 } else {
                     self.viewModel.getAllTeamPlayersForBothTeams { (response) in
                         if response == 200 {
                             self.updateStatusLabels()}
                         if self.viewModel.firstLoad{self.initialAlert()}
                     }
-                    DispatchQueue.main.async{
+                    DispatchQueue.main.async {
                         self.activityIndicator.stopAnimating()
                     }
                 }
             }
         }
     }
-    
     
     private func configureButtons() {
         _ = self.gradientButton.applyGradient( colours: [ #colorLiteral(red: 1, green: 0.7294117647, blue: 0.5490196078, alpha: 1), #colorLiteral(red: 0.9960784314, green: 0.3607843137, blue: 0.4156862745, alpha: 1)], cornerRadius: 4)
@@ -176,9 +176,10 @@ class UpdateLiveScoreViewController: UIViewController {
             self.showNonStrikerSelection()
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (alertAction) in
-            DispatchQueue.main.async { self.buttonGroup.forEach { (button) in
-                button.deselectButton()
-            }}
+            DispatchQueue.main.async {
+                self.buttonGroup.forEach { (button) in
+                    button.deselectButton()
+                }}
         }))
         self.present(alert, animated: true, completion: nil)
         
@@ -253,8 +254,11 @@ class UpdateLiveScoreViewController: UIViewController {
         activityIndicator.startAnimating()
         self.view.isUserInteractionEnabled = false
         viewModel.callUpdateLiveScoreAPI {
-            DispatchQueue.main.async { self.updateStatusLabels(); self.view.isUserInteractionEnabled = true }
-            DispatchQueue.main.async {self.activityIndicator.stopAnimating()}
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                self.updateStatusLabels()
+                self.view.isUserInteractionEnabled = true
+            }
         }
         showStaticStatusView()
         refresh()
@@ -289,8 +293,10 @@ class UpdateLiveScoreViewController: UIViewController {
         if viewModel.doesNeedBowlerSelection {
             activityIndicator.startAnimating()
             viewModel.changePlayerList(selection: SelectionType.BOWLER) {
-                DispatchQueue.main.async { self.activityIndicator.stopAnimating() }
-                DispatchQueue.main.async{self.showChoosePlayerView(player: "Bowler")}
+                DispatchQueue.main.async{
+                    self.activityIndicator.stopAnimating()
+                    self.showChoosePlayerView(player: "Bowler")
+                }
                 self.viewModel.reasonSelction = false
             }
             
@@ -300,9 +306,11 @@ class UpdateLiveScoreViewController: UIViewController {
     func showStrikerSelection() {
         activityIndicator.startAnimating()
         viewModel.changePlayerList(selection: SelectionType.STRIKER) {
-            DispatchQueue.main.async { self.activityIndicator.stopAnimating() }
             self.viewModel.batsmanSelection = true
-            DispatchQueue.main.async{self.showChoosePlayerView(player: "Striker")}
+            DispatchQueue.main.async{
+                self.activityIndicator.stopAnimating()
+                self.showChoosePlayerView(player: "Striker")
+            }
         }
     }
     
@@ -522,6 +530,7 @@ class UpdateLiveScoreViewController: UIViewController {
     func wicketHandler() {
         let alert = UIAlertController(title: "Provide Information", message: "Please select the current player who got out, incoming batsman and fielder if applicable", preferredStyle: .alert)
         alert.view.tintColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+//        viewModel.updateCurrentOutPlayer(player: viewModel.strikerBatsmanId)
         let currentOutBatsmanSelect = UIAlertAction(title: "Current Wicket", style: .default) { (_) in
             self.showOutPlayerSelection()
             self.dismiss(animated: true, completion: nil)

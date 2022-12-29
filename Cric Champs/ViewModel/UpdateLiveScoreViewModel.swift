@@ -24,37 +24,20 @@ class UpdateLiveScoreViewModel {
     let getFielderURl = "\(baseURL)/live/score/fielders"
     let getRemainingBowlerURL = "\(baseURL)/live/score/remaining-bowlers"
     let getCurrentBatsmenURL = "\(baseURL)/live/score/currentBatsman"
-    
-//    var headers = [ "Authorization" : "Bearer \(HomeViewModel.shared.user?.authorization)!"]
+ 
     var headers = [ "Authorization" : "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkaGFudUBnbWFpbC5jb20iLCJleHAiOjE2NzIyMTMzODMsImlhdCI6MTY3MjEyNjk4M30.MfyabEBB1DS5j06g1JfMMvMeeQKdbck-AztpDq862j4LwzZKqEtGFgU9xOfKx8nU6gpk3Tzr_WaOKNW6pzMGvw"]
-//    var getTeamsHeaders: [String: String] = [
-//        "Authorization" : "Bearer \(HomeViewModel.shared.user?.authorization)!",
-//        "tournamentId": "1",
-//        "matchId": "3"
-//    ]
+ 
     var getTeamsHeaders: [String: String] = [
         "Authorization" : "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkaGFudUBnbWFpbC5jb20iLCJleHAiOjE2NzIyMTMzODMsImlhdCI6MTY3MjEyNjk4M30.MfyabEBB1DS5j06g1JfMMvMeeQKdbck-AztpDq862j4LwzZKqEtGFgU9xOfKx8nU6gpk3Tzr_WaOKNW6pzMGvw",
         "tournamentId": "1",
         "matchId": "3"
     ]
-    
-//    var getPlayersHeaders: [String: String] = [
-//        "Authorization" : "Bearer \(HomeViewModel.shared.user?.authorization)!",
-//        "tournamentId": "1",
-//        "teamId": "1"
-//    ]
+     
     var getPlayersHeaders: [String: String] = [
         "Authorization" : "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkaGFudUBnbWFpbC5jb20iLCJleHAiOjE2NzIyMTMzODMsImlhdCI6MTY3MjEyNjk4M30.MfyabEBB1DS5j06g1JfMMvMeeQKdbck-AztpDq862j4LwzZKqEtGFgU9xOfKx8nU6gpk3Tzr_WaOKNW6pzMGvw",
         "tournamentId": "1",
         "teamId": "1"
     ]
-    
-//    var liveGetPlayerHeader: [String: String] = [
-//        "Authorization" : "Bearer \(HomeViewModel.shared.user?.authorization)!",
-//        "tournamentId": "1",
-//        "teamId": "1",
-//        "matchId": "10"
-//    ]
     
     var liveGetPlayerHeader: [String: String] = [
         "Authorization" : "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkaGFudUBnbWFpbC5jb20iLCJleHAiOjE2NzIyMTMzODMsImlhdCI6MTY3MjEyNjk4M30.MfyabEBB1DS5j06g1JfMMvMeeQKdbck-AztpDq862j4LwzZKqEtGFgU9xOfKx8nU6gpk3Tzr_WaOKNW6pzMGvw",
@@ -167,15 +150,14 @@ class UpdateLiveScoreViewModel {
     
     var currentMatchStatus: MatchStatus = MatchStatus.FIRSTINNING
     var currentOverStatus: OverStatus?
+    var stopScoreboardUpdate = false
     
     func updateHeaders() {
-        print("called")
         headers["Authorization"] = token
         getTeamsHeaders["Authorization"] = token
         getPlayersHeaders["Authorization"] = token
         liveGetPlayerHeader["Authorization"] = token
         scorecardHeaders["Authorization"] = token
-        print(token, "tokennnnnp")
     }
     
     func getScoreboard(completion: @escaping(() -> Void)) {
@@ -214,9 +196,12 @@ class UpdateLiveScoreViewModel {
             } else {
                 DispatchQueue.main.async {self.delegate?.showAlert(title: "Error", message: body)}
             }
-            self.getScoreboard() {
-                print("called")
+            if self.stopScoreboardUpdate {
                 completion()
+            } else {
+                self.getScoreboard {
+                    completion()
+                }
             }
         }
         
@@ -604,6 +589,7 @@ class UpdateLiveScoreViewModel {
         run = data["runs"] as! Int
         
         if let matchStatus = data["matchStatus"] as? String {
+            stopScoreboardUpdate = false
             switch matchStatus {
             case "ABANDONED":
                 currentMatchStatus = MatchStatus.ABANDONED
@@ -626,6 +612,7 @@ class UpdateLiveScoreViewModel {
             case "INPROGRESS":
                 currentMatchStatus = MatchStatus.INPROGRESS
             case "COMPLETED":
+                stopScoreboardUpdate = true
                 currentMatchStatus = MatchStatus.COMPLETED
                 DispatchQueue.main.async {
                     self.delegate?.showAlert(title: "Match Completed", message: "Match is now completed, Thank You")
@@ -645,6 +632,7 @@ class UpdateLiveScoreViewModel {
     }
     
     func handleInningsComplete() {
+        stopScoreboardUpdate = true
         swapInnings()
         over = 0
         run = 0
