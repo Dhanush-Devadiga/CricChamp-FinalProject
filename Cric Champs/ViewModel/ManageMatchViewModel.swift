@@ -12,13 +12,16 @@ class ManageMatchViewModel {
     static var shared = ManageMatchViewModel()
     var network = NetworkManager()
     var homeViewModel = HomeViewModel.shared
-
     
     var matches = [MatchInfo]()
     var segrageatedMatches : [[MatchInfo]] = []
     var uniqueDates: Set<String> = []
     
     var headerForGetMatch: [String : String] = [:]
+    var tournamentOverviewHeader: [String: String] = [:]
+    
+    let overViewURL = "\(baseURL)/tournament/view"
+    var tournamentOverview: TournamentOverView?
     
     func computeNumberOfSectionsRequired() -> Int {
         var uniqueDates: Set<String> = []
@@ -50,7 +53,7 @@ class ManageMatchViewModel {
     
     func makeDataRequest(completion: @escaping ([MatchInfo]?, Error?) -> Void) {
         setHeaderForGetMatches()
-        let url = "http://cric-env.eba-esrqeiw3.ap-south-1.elasticbeanstalk.com/match/info"
+        let url = "\(baseURL)/match/info"
         let queryUrl = URL(string: url)
         var matchData = [MatchInfo]()
         if queryUrl != nil { network.getTournamentData(url: url, headers: headerForGetMatch) { (apidata, statusCode, error) in
@@ -62,6 +65,11 @@ class ManageMatchViewModel {
             }
         }
         }
+    }
+    
+    func setTournamentOverviewHeader() {
+        tournamentOverviewHeader["Authorization"] = homeViewModel.user?.authorization
+        tournamentOverviewHeader["tournamentId"] = String(homeViewModel.currentTournamentId!)
     }
     
     private func setHeaderForGetMatches() {
@@ -184,6 +192,101 @@ class ManageMatchViewModel {
             }
         self.matches = allMatchs
         return matches
+    }
+    
+    func fetchTournamentOverview(completion: @escaping((Bool, Error?) -> Void)) {
+        let networkManager = NetworkManager()
+        setTournamentOverviewHeader()
+        networkManager.getTournamentOverViewData(url: overViewURL, headers: tournamentOverviewHeader) {data, response, error in
+            if response == 200 {
+                if let data = data {
+                    let overView = self.fetchTournamentOverViewDetails(data: data)
+                    self.tournamentOverview = overView
+                    completion(true, nil)
+                }
+            } else {
+                completion(false, error)
+            }
+        }
+    }
+    
+    private func fetchTournamentOverViewDetails(data: [String: Any]) -> TournamentOverView {
+        var tournamentOverView = TournamentOverView()
+        
+        if let id = data["tournamentId"] as? Int64 {
+            tournamentOverView.tournamentId = id
+        }
+        if let name = data["tournamentName"] as? String {
+            tournamentOverView.tournamentName = name
+        }
+        if let code = data["tournamentCode"] as? String {
+            tournamentOverView.tournamentCode = code
+        }
+        if let date = data["tournamentStartDate"] as? String {
+            tournamentOverView.tournamentStartDate = getDate(date: date)
+        }
+        if let date = data["tournamentEndDate"] as? String {
+            tournamentOverView.tournamentEndDate = getDate(date: date)
+        }
+        if let time = data["tournamentStartTime"] as? String {
+            tournamentOverView.tournamentStartTime = getTime(time: time)
+        }
+        if let time = data["tournamentEndTime"] as? String {
+            tournamentOverView.tournamentEndTime = getTime(time: time)
+        }
+        if let teams = data["numberOfTeams"] as? Int {
+            tournamentOverView.numberOfTeams = teams
+        }
+        if let overs = data["numberOfOvers"] as? Int {
+            tournamentOverView.numberOfOvers = overs
+        }
+        if let grounds = data["numberOfGrounds"] as? Int {
+            tournamentOverView.numberOfGrounds = grounds
+        }
+        if let umpires = data["numberOfUmpires"] as? Int {
+            tournamentOverView.numberOfUmpires = umpires
+        }
+        if let status = data["tournamentStatus"] as? String {
+            tournamentOverView.tournamentStatus = status
+        }
+        return tournamentOverView
+    }
+    
+    private func getDate(date: String) -> String {
+        
+        let format = DateFormatter()
+        format.dateFormat = "yyyy-MM-dd"
+        let data = format.date(from: date)
+        format.timeStyle = .short
+        format.dateStyle = .medium
+        format.dateFormat = "MMM dd yyyy"
+        let dateValue = format.string(from: data!)
+        let weekday = Calendar.current.component(.weekday, from: data!)
+        let day = getWeekDay(weekDay: weekday)
+        return day + ", " + dateValue
+    }
+    
+    private func getTime(time: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm:ss"
+        let date = dateFormatter.date(from: time)
+        dateFormatter.dateFormat = "h:mm a"
+        let convertedTime = dateFormatter.string(from: date!)
+        return convertedTime
+    }
+    
+    private func getWeekDay(weekDay: Int) -> String {
+        switch  weekDay{
+        case 1: return "Sun"
+        case 2: return "Mon"
+        case 3: return "Tue"
+        case 4: return "Wed"
+        case 5: return "Thu"
+        case 6: return "Fri"
+        case 7: return "Sat"
+        default:
+            return ""
+        }
     }
     
 }

@@ -21,6 +21,8 @@ class ManageViewController: UIViewController {
     @IBOutlet weak var tournamentLine: UIView!
     @IBOutlet weak var matchesLine: UIView!
     @IBOutlet weak var coAdminLine: UIView!
+    @IBOutlet weak var tournamentCode: UILabel!
+    @IBOutlet weak var leagueName: UILabel!
     
     var currentSelection: Selection?
     var manageVm = ManageMatchViewModel()
@@ -34,9 +36,6 @@ class ManageViewController: UIViewController {
         tableView.delegate = self
         configureTournamentSelect()
         
-//        manageVm.getMatchCell { (isSuccess) in
-//            DispatchQueue.main.async{ self.tableView.reloadData() }
-//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,11 +72,23 @@ class ManageViewController: UIViewController {
     @IBAction func onClickBack(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
+    
     private func configureTournamentSelect() {
         currentSelection = .TOURNAMENT
         tournamentLine.isHidden = false
         matchesLine.isHidden = true
         coAdminLine.isHidden = true
+        manageVm.fetchTournamentOverview{
+            isSuccess, error in
+            DispatchQueue.main.async {
+                if isSuccess {
+                    self.tableView.reloadData()
+                    self.leagueName.text = self.manageVm.tournamentOverview?.tournamentName
+                    self.tournamentCode.text = "Tournament Code:" +  (self.manageVm.tournamentOverview?.tournamentCode)!
+//                    numbers =
+                }
+            }
+        }
         tableView.reloadData()
     }
     

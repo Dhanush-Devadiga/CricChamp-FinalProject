@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct TournamentOverView {
     var tournamentId: Int64?
     var tournamentName: String?
