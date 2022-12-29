@@ -107,7 +107,6 @@ extension ManageViewController: UITableViewDelegate, UITableViewDataSource {
             rows = coAdmins.count
         case .MATCHES:
             rows = manageVm.matches.count
-//            rows = matches.count
         case .TOURNAMENT:
             rows = list.count
         case .none:
