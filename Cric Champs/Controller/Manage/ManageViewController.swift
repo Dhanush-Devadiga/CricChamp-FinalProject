@@ -54,14 +54,6 @@ class ManageViewController: UIViewController {
         tableView.register(UINib(nibName: CoAdminCell.nibName, bundle: nil), forCellReuseIdentifier: CoAdminCell.identifier)
     }
     
-    private func createTempMatches() {
-        
-        matches.append(MatchCell(date: "SATURDAY - OCTOBER 17, 2017", matchNumber: "12", groundNumber: "1", teamOneName: "Rajput Sports", teamTwoName: "Super Giants", matchStatus: MatchCellStatus.ABONDONED, teamOneScore: "98/5", teamTwoScore: "43/3", teamOneOvers: "10", teamTwoOvers: "5.6", matchResultDescription: "Match abondoned due to rain"))
-        matches.append(MatchCell(date: "SATURDAY - OCTOBER 17, 2017", matchNumber: "13", groundNumber: "2", teamOneName: "UDL Strikers", teamTwoName: "Super Coders", matchStatus: .PAST, teamOneScore: "123/2", teamTwoScore: "88/1", teamOneOvers: "10", teamTwoOvers: "9.3", matchResultDescription: "UDL won by 33 runs"))
-        matches.append(MatchCell(date: "SATURDAY - OCTOBER 18, 2017", matchNumber: "14", groundNumber: "1", teamOneName: "Code Warriors", teamTwoName: "Coastal Riders", matchStatus: .LIVE, teamOneScore: "96/3", teamTwoScore: "67/2", teamOneOvers: "10", teamTwoOvers: "8.3", matchResultDescription: "Coastal Riders need 29 runs to win"))
-        matches.append(MatchCell(date: "SATURDAY - OCTOBER 18, 2017", matchNumber: "15", groundNumber: "2", teamOneName: "UDL Strikers", teamTwoName: "Code Warriors", matchStatus: MatchCellStatus.ABONDONED, teamOneScore: "-", teamTwoScore: "-", teamOneOvers: "-", teamTwoOvers: "-", matchResultDescription: "Sunday, October 17, 2017, 3:30 PM IST"))
-    }
-    
     private func createTempCoAdmins() {
         coAdmins.append(CoAdmin(name: "Dhanush Devadiga", profilePhoto: nil, matches: "Match 1, Match 2, Match 3", currentMatch: "Match 2"))
     }
@@ -134,7 +126,6 @@ extension ManageViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case .MATCHES:
             let cell = tableView.dequeueReusableCell(withIdentifier: "MatchCell") as! MatchCardCell
-            //cell.sendMatchDetails(match: (manageVm.matches[indexPath.row]))
             cell.sendVersusMatchesData(vmatch: manageVm.matches[indexPath.row])
             return cell
         case .TOURNAMENT:
